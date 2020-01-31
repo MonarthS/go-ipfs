@@ -89,10 +89,18 @@ VOLUME $IPFS_PATH
 # The default logging level
 ENV IPFS_LOGGING ""
 
+#chanege port ipfs
+# RUN ipfs init && ipfs config Addresses.API /ip4/0.0.0.0/tcp/$PORT
+
 # This just makes sure that:
 # 1. There's an fs-repo, and initializes one if there isn't.
 # 2. The API and Gateway are accessible from outside the container.
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/start_ipfs"]
 
+# RUN ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
+
 # Execute the daemon subcommand by default
 CMD ["daemon", "--migrate=true"]
+
+# heroku container:push web -a app_name
+# heroku container:release web -a app_name
